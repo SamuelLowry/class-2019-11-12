@@ -1,0 +1,35 @@
+---
+title: "Work With My Boi DieFlores2123"
+author: "Samuel Lowry"
+date: "11/12/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(googlesheets4)
+library(tidyverse)
+```
+
+```{r}
+sheets_deauth()
+ur_mom <- read_sheet("13NhlT-Oik5P4NOKRWwrJ7xZQlddFNk81HHEw9wkWglM")
+```
+
+```{r}
+ur_mom %>% 
+summarize(sum(dvote))
+```
+
+```{r}
+ur_mom %>% 
+  ggplot(aes(x = dvote, y = partisanship)) +
+  geom_jitter(width = 0.5) +
+  geom_smooth(method = "lm")
+
+```
+```{r}
+mod <- lm(data = ur_mom, dvote ~ partisanship)
+mod
+```
+
